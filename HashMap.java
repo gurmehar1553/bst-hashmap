@@ -63,7 +63,6 @@ class MyHashMap<K,V>{
         if (tail == null){
             head = newNode;
             tail = head;
-            System.out.println("No elements");
         }
         else {
             tail.next = newNode;
