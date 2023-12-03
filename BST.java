@@ -3,6 +3,16 @@ public class BST {
         BinarySearchTree<Integer> bst = new BinarySearchTree<>(56);
         bst.insert(30);
         bst.insert(70);
+        bst.insert(22);
+        bst.insert(40);
+        bst.insert(60);
+        bst.insert(95);
+        bst.insert(11);
+        bst.insert(65);
+        bst.insert(3);
+        bst.insert(16);
+        bst.insert(63);
+        bst.insert(67);
         bst.print();
     }
 }
@@ -35,8 +45,8 @@ class BinarySearchTree<T extends Comparable<T>>{
         if(root == null){
             return;
         }
+        System.out.print(root.val+" ");
         printNodes(root.left);
-        System.out.println(root.val);
         printNodes(root.right);
     }
 }
