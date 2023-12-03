@@ -14,6 +14,12 @@ public class BST {
         bst.insert(63);
         bst.insert(67);
         bst.print();
+        if(bst.search(63)){
+            System.out.println("Value Found");
+        }
+        else {
+            System.out.println("Value Not Found");
+        }
     }
 }
 class BinarySearchTree<T extends Comparable<T>>{
@@ -37,9 +43,28 @@ class BinarySearchTree<T extends Comparable<T>>{
         }
         return root;
     }
+    public boolean search(T val){
+        INode<T> ptr= root;
+        return searchNode(ptr,val);
+    }
+    private boolean searchNode(INode<T> root,T val){
+        if (root == null){
+            return false;
+        }
+        if (root.val.compareTo(val) > 0){
+            return searchNode(root.left,val);
+        }
+        else if(root.val.compareTo(val) < 0){
+            return searchNode(root.right,val);
+        }
+        else {
+            return true;
+        }
+    }
     public void print(){
         INode<T> ptr=root;
         printNodes(ptr);
+        System.out.println();
     }
     private void printNodes(INode<T> root){
         if(root == null){
