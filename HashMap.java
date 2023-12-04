@@ -19,7 +19,10 @@ public class HashMap {
         System.out.println(mp.get("paranoid").val);
         System.out.println("Freq of each word: ");
         mp.print();
+        mp.remove("avoidable");
+        System.out.println(mp.get("avoidable"));
     }
+
 }
 
 class MyMapNode<K, V>{
@@ -67,6 +70,12 @@ class HashMapImplement<K,V>{
         }
         arr.set(hash,mp);
     }
+    public void remove(K key){
+        int hash = hashFunction(key);
+        MyLinkedMap<K,V> linkedMap = arr.get(hash);
+        linkedMap.remove(key);
+        arr.set(hash,linkedMap);
+    }
     public void print(){
         for(MyLinkedMap<K,V> node: arr){
             if (node == null){
@@ -107,6 +116,20 @@ class MyLinkedMap<K,V>{
             tail.next = newNode;
             tail = newNode;
         }
+    }
+    public void remove(K key){
+        MyMapNode<K,V> ptr = head;
+        if (ptr.key == key){
+            head = ptr.next;
+            return;
+        }
+        while (ptr.next != null && !ptr.next.key.equals(key)){
+            ptr = ptr.next;
+        }
+        if (ptr.next == null){
+            return;
+        }
+        ptr.next = ptr.next.next;
     }
     public void print(){
         MyMapNode<K,V> ptr = head;
